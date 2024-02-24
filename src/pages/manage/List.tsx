@@ -1,6 +1,8 @@
 import React, { FC, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { useTitle } from "ahooks";
 import styles from "./List.module.scss";
-import QuestionCard from "../components/QuestionCard";
+import QuestionCard from "../../components/QuestionCard";
 
 const rawQuestionList = [
   {
@@ -38,8 +40,11 @@ const rawQuestionList = [
 ];
 
 const List: FC = () => {
+  useTitle("好像是个问卷 - 我的问卷");
+  const [searchParams] = useSearchParams();
+  console.log("keyword", searchParams.get("keyword"));
+
   const [questionList, setQuestionList] = useState(rawQuestionList);
-  console.log(questionList, setQuestionList);
 
   return (
     <>
@@ -56,7 +61,7 @@ const List: FC = () => {
           return <QuestionCard key={_id} {...q} />;
         })}
       </div>
-      <div className={styles.footer}>footer</div>
+      <div className={styles.footer}>manage list footer</div>
     </>
   );
 };
