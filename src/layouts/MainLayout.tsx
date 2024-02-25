@@ -4,7 +4,7 @@ import { Layout } from "antd";
 import Logo from "../components/Logo";
 import UserInfo from "../components/UserInfo";
 import styles from "./MainLayout.module.scss";
-import config from "../config/config";
+import { PROJECT_NAME } from "../constant";
 
 const { Header, Content, Footer } = Layout;
 
@@ -23,7 +23,7 @@ const MainLayout: FC = () => {
         <Outlet></Outlet>
       </Content>
       <Footer className={styles.footer}>
-        {config.projectName} &copy;2024 - present. Created by Maschera
+        {PROJECT_NAME} &copy;2024 - present. Created by Maschera
       </Footer>
     </Layout>
   );

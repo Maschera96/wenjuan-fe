@@ -1,10 +1,10 @@
 import React, { FC, useState } from "react";
-import { useSearchParams } from "react-router-dom";
 import { Typography } from "antd";
 import { useTitle } from "ahooks";
 import styles from "./common.module.scss";
 import QuestionCard from "../../components/QuestionCard";
-import config from "../../config/config";
+import { PROJECT_NAME } from "../../constant";
+import ListSearch from "../../components/ListSearch";
 
 const { Title } = Typography;
 
@@ -44,9 +44,7 @@ const rawQuestionList = [
 ];
 
 const List: FC = () => {
-  useTitle(`${config.projectName} - 我的问卷`);
-  const [searchParams] = useSearchParams();
-  console.log("keyword", searchParams.get("keyword"));
+  useTitle(`${PROJECT_NAME} - 我的问卷`);
 
   const [questionList, setQuestionList] = useState(rawQuestionList);
 
@@ -56,7 +54,9 @@ const List: FC = () => {
         <div className={styles.left}>
           <Title level={3}>我的问卷</Title>
         </div>
-        <div className={styles.right}>（搜索）</div>
+        <div className={styles.right}>
+          <ListSearch />
+        </div>
       </div>
       <div className={styles.content}>
         {/* 问卷列表 */}

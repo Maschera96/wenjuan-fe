@@ -3,10 +3,9 @@ import { Space, Typography } from "antd";
 import { FormOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import styles from "./Logo.module.scss";
-import config from "../config/config";
+import { PROJECT_NAME } from "../constant";
 
 const { Title } = Typography;
-console.log("config", config);
 
 const Logo: FC = () => {
   return (
@@ -16,7 +15,7 @@ const Logo: FC = () => {
           <Title>
             <FormOutlined />
           </Title>
-          <Title>{config.projectName}</Title>
+          <Title>{PROJECT_NAME}</Title>
         </Space>
       </Link>
     </div>
