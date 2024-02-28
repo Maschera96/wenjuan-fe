@@ -1,18 +1,18 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import { Typography, Spin } from "antd";
-import { useRequest, useTitle } from "ahooks";
+import { useTitle } from "ahooks";
 import styles from "./common.module.scss";
 import QuestionCard from "../../components/QuestionCard";
 import { PROJECT_NAME } from "../../constant";
 import ListSearch from "../../components/ListSearch";
-import { getQuestionListService } from "../../services/question";
+import useLoadQuestionListData from "../../hooks/useLoadQuestionList";
 
 const { Title } = Typography;
 
 const List: FC = () => {
   useTitle(`${PROJECT_NAME} - 我的问卷`);
 
-  const { data = {}, loading } = useRequest(getQuestionListService);
+  const { data = {}, loading } = useLoadQuestionListData();
   const { list = [], total = 0 } = data;
 
   return (

@@ -5,12 +5,10 @@ import { useRequest } from "ahooks";
 function useLoadQuestionData() {
   const { id = "" } = useParams();
 
-  async function load() {
+  const { data, error, loading } = useRequest(async () => {
     const data = await getQuestionService(id);
     return data;
-  }
-
-  const { data, error, loading } = useRequest(load);
+  });
 
   return { data, error, loading };
 }
