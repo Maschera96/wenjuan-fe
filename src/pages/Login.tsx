@@ -41,7 +41,6 @@ const Login: FC = () => {
   }, []);
 
   function onFinish(values: any) {
-    // eslint-disable-line
     console.log(values);
     const { username, password, remember } = values || {};
 

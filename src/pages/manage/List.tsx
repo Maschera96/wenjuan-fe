@@ -1,52 +1,19 @@
-import React, { FC, useState } from "react";
-import { Typography } from "antd";
-import { useTitle } from "ahooks";
+import React, { FC, useEffect, useState } from "react";
+import { Typography, Spin } from "antd";
+import { useRequest, useTitle } from "ahooks";
 import styles from "./common.module.scss";
 import QuestionCard from "../../components/QuestionCard";
 import { PROJECT_NAME } from "../../constant";
 import ListSearch from "../../components/ListSearch";
+import { getQuestionListService } from "../../services/question";
 
 const { Title } = Typography;
-
-const rawQuestionList = [
-  {
-    _id: "q1",
-    title: "问卷1",
-    isPublished: false,
-    isStar: false,
-    answerCount: 5,
-    createdAt: "3月12日 13:23",
-  },
-  {
-    _id: "q2",
-    title: "问卷2",
-    isPublished: true,
-    isStar: false,
-    answerCount: 5,
-    createdAt: "3月15日 14:23",
-  },
-  {
-    _id: "q3",
-    title: "问卷3",
-    isPublished: false,
-    isStar: true,
-    answerCount: 5,
-    createdAt: "4月10日 13:26",
-  },
-  {
-    _id: "q4",
-    title: "问卷4",
-    isPublished: true,
-    isStar: false,
-    answerCount: 5,
-    createdAt: "4月14日 18:53",
-  },
-];
 
 const List: FC = () => {
   useTitle(`${PROJECT_NAME} - 我的问卷`);
 
-  const [questionList, setQuestionList] = useState(rawQuestionList);
+  const { data = {}, loading } = useRequest(getQuestionListService);
+  const { list = [], total = 0 } = data;
 
   return (
     <>
@@ -59,9 +26,15 @@ const List: FC = () => {
         </div>
       </div>
       <div className={styles.content}>
+        {loading && (
+          <div style={{ textAlign: "center" }}>
+            <Spin></Spin>
+          </div>
+        )}
         {/* 问卷列表 */}
-        {questionList.length > 0 &&
-          questionList.map((q) => {
+        {!loading &&
+          list.length > 0 &&
+          list.map((q: any) => {
             const { _id } = q;
 
             return <QuestionCard key={_id} {...q} />;

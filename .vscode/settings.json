@@ -6,9 +6,11 @@
       "ahooks",
       "antd",
       "commitlint",
+      "craco",
       "Elems",
       "Formik",
       "immer",
+      "mockjs",
       "Popconfirm"
     ]
   }

@@ -9,7 +9,6 @@ const { Title } = Typography;
 
 const Register: FC = () => {
   function onFinish(values: any) {
-    // eslint-disable-line
     console.log(values);
   }
 
