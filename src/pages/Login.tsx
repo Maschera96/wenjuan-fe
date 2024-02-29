@@ -41,7 +41,6 @@ const Login: FC = () => {
   }, []);
 
   function onFinish(values: any) {
-    console.log(values);
     const { username, password, remember } = values || {};
 
     if (values.remember) {

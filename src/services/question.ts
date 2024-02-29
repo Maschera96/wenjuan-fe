@@ -3,8 +3,8 @@ import type { ResDataType } from "./ajax";
 
 type SearchOption = {
   keyword: string;
-  // page
-  // pageSize
+  page: number;
+  pageSize: number;
   isStar: boolean;
   isDeleted: boolean;
   // isPublished

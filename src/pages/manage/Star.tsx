@@ -1,11 +1,12 @@
 import React, { FC } from "react";
-import { Typography, Empty, Spin } from "antd";
+import { Typography, Empty, Spin, Pagination } from "antd";
 import { useTitle } from "ahooks";
 import styles from "./common.module.scss";
 import QuestionCard from "../../components/QuestionCard";
 import { PROJECT_NAME } from "../../constant";
 import ListSearch from "../../components/ListSearch";
-import useLoadQuestionListData from "../../hooks/useLoadQuestionList";
+import useLoadQuestionListData from "../../hooks/useLoadQuestionListData";
+import ListPage from "../../components/ListPage";
 
 const { Title } = Typography;
 
@@ -34,14 +35,17 @@ const Star: FC = () => {
         {!loading && list.length === 0 && (
           <Empty description="暂无数据"></Empty>
         )}
-        {list.length > 0 &&
+        {!loading &&
+          list.length > 0 &&
           list.map((q: any) => {
             const { _id } = q;
 
             return <QuestionCard key={_id} {...q} />;
           })}
       </div>
-      <div className={styles.footer}>分页</div>
+      <div className={styles.footer}>
+        <ListPage total={total}></ListPage>
+      </div>
     </>
   );
 };
