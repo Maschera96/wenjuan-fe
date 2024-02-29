@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Typography } from "antd";
-import { MANAGE_PATHNAME } from "../router";
+import { MANAGE_INDEX_PATHNAME } from "../router";
 import styles from "./Home.module.scss";
 
 const { Title, Paragraph } = Typography;
@@ -20,7 +20,7 @@ const Home: FC = () => {
           <Button
             type="primary"
             onClick={() => {
-              nav(MANAGE_PATHNAME);
+              nav(MANAGE_INDEX_PATHNAME);
             }}
           >
             开始使用
