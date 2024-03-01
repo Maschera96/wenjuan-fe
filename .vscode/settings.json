@@ -11,6 +11,7 @@
       "Formik",
       "immer",
       "mockjs",
-      "Popconfirm"
+      "Popconfirm",
+      "reduxjs"
     ]
   }
