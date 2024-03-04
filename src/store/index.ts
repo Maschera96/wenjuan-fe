@@ -1,14 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer, { UserStateType } from "./userReducer";
+import componentsReducer, { ComponentsStateType } from "./componentsReducer";
 
 export type StateType = {
   user: UserStateType;
+  components: ComponentsStateType;
 };
 
 export default configureStore({
   reducer: {
     user: userReducer,
 
-    // 分模块
+    components: componentsReducer,
+
+    // 组件列表
+
+    // 问卷信息 title desc ...
   },
 });

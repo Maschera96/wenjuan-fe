@@ -9,10 +9,6 @@ const { Title, Paragraph } = Typography;
 const Home: FC = () => {
   const nav = useNavigate();
 
-  const [dataA, setDataA] = useState(0);
-  const [dataB, setDataB] = useState(0);
-  const flag = dataA > dataB;
-
   return (
     <div className={styles.container}>
       <div className={styles.info}>
@@ -29,23 +25,6 @@ const Home: FC = () => {
           >
             开始使用
           </Button>
-        </div>
-        <div>
-          <p>flag {JSON.stringify(flag)}</p>
-          <div>
-            <span>dataA: {dataA}</span>
-            <button onClick={() => setDataA(dataA + 1)}>+</button>
-          </div>
-          <div>
-            <span>dataB: {dataB}</span>
-            <button onClick={() => setDataB(dataB + 1)}>+</button>
-          </div>
-          <button onClick={() => console.log("flag", flag, typeof flag)}>
-            console flag
-          </button>
-          <button onClick={() => console.log("dataA", dataA, typeof dataA)}>
-            console dataA
-          </button>
         </div>
       </div>
     </div>
