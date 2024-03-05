@@ -5,7 +5,7 @@ import { Form, Input } from "antd";
 const PropComponent: FC<QuestionInputPropsType> = (
   props: QuestionInputPropsType,
 ) => {
-  const { title, placeholder, onChange } = props;
+  const { title, placeholder, onChange, disabled } = props;
   const [form] = Form.useForm();
 
   useEffect(() => {
@@ -27,6 +27,7 @@ const PropComponent: FC<QuestionInputPropsType> = (
       layout="vertical"
       initialValues={{ title, placeholder }}
       onValuesChange={handleValueChange}
+      disabled={disabled}
     >
       <Form.Item
         label="标题"

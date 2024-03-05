@@ -6,6 +6,7 @@
       "ahooks",
       "antd",
       "Appstore",
+      "clonedeep",
       "commitlint",
       "craco",
       "Elems",
