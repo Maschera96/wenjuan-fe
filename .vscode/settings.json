@@ -9,11 +9,13 @@
       "clonedeep",
       "commitlint",
       "craco",
+      "downarrow",
       "Elems",
       "Formik",
       "immer",
       "mockjs",
       "Popconfirm",
-      "reduxjs"
+      "reduxjs",
+      "uparrow"
     ]
   }
