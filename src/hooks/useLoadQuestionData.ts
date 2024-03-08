@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { resetComponents } from "../store/componentsReducer";
 import { resetPageInfo } from "../store/pageInfoReducer";
+import { ActionCreators } from "redux-undo";
 
 function useLoadQuestionData() {
   const { id = "" } = useParams();
@@ -44,6 +45,7 @@ function useLoadQuestionData() {
     dispatch(
       resetComponents({ componentList, selectedId, copiedComponent: null }),
     );
+    dispatch(ActionCreators.clearHistory()); // 清除历史
 
     // 把 pageInfo 存储到 Redux store 中
     dispatch(resetPageInfo({ title, desc, js, css }));

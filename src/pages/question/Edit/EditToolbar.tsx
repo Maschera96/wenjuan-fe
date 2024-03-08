@@ -5,12 +5,19 @@ import {
   DownOutlined,
   EyeInvisibleOutlined,
   LockOutlined,
+  RedoOutlined,
+  UndoOutlined,
   UpOutlined,
 } from "@ant-design/icons";
 import { Button, Space, Tooltip } from "antd";
 import React, { FC } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
+  StateWithHistory,
+  ActionCreators as UndoActionCreators,
+} from "redux-undo";
+import {
+  ComponentsStateType,
   changeComponentHidden,
   copySelectedComponent,
   moveComponent,
@@ -19,6 +26,7 @@ import {
   toggleComponentLocked,
 } from "../../../store/componentsReducer";
 import useGetComponentInfo from "../../../hooks/useGetComponentInfo";
+import { StateType } from "../../../store";
 
 const EditToolbar: FC = () => {
   const dispatch = useDispatch();
@@ -29,6 +37,12 @@ const EditToolbar: FC = () => {
   const selectedIndex = componentList.findIndex((c) => c.fe_id === selectedId);
   const isFirst = selectedIndex <= 0;
   const isLast = selectedIndex + 1 >= length;
+
+  const { past, future } = useSelector<StateType>(
+    (state) => state.components,
+  ) as StateWithHistory<ComponentsStateType>;
+  const hasPast = past.length > 0;
+  const hasFuture = future.length > 0;
 
   //   删除组件
   function handleDelete() {
@@ -69,6 +83,16 @@ const EditToolbar: FC = () => {
     dispatch(
       moveComponent({ oldIndex: selectedIndex, newIndex: selectedIndex + 1 }),
     );
+  }
+
+  // 撤销
+  function undo() {
+    dispatch(UndoActionCreators.undo());
+  }
+
+  // 重做
+  function redo() {
+    dispatch(UndoActionCreators.redo());
   }
 
   return (
@@ -131,6 +155,24 @@ const EditToolbar: FC = () => {
             icon={<DownOutlined />}
             onClick={moveDown}
             disabled={isLast}
+          ></Button>
+        </Tooltip>
+
+        <Tooltip title="撤销">
+          <Button
+            shape="circle"
+            icon={<UndoOutlined />}
+            onClick={undo}
+            disabled={!hasPast}
+          ></Button>
+        </Tooltip>
+
+        <Tooltip title="重做">
+          <Button
+            shape="circle"
+            icon={<RedoOutlined />}
+            onClick={redo}
+            disabled={!hasFuture}
           ></Button>
         </Tooltip>
       </Space>
