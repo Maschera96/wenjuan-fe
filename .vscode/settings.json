@@ -15,6 +15,7 @@
       "immer",
       "mockjs",
       "Popconfirm",
+      "Qrcode",
       "reduxjs",
       "undoable",
       "uparrow"

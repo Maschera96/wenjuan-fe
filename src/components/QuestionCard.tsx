@@ -128,6 +128,7 @@ const QuestionCard: FC<PropsType> = (props: PropsType) => {
               type="text"
               size="small"
               disabled={!isPublished}
+              onClick={() => nav(`/question/stat/${_id}`)}
             >
               数据统计
             </Button>
