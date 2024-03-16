@@ -66,6 +66,9 @@ const Login: FC = () => {
         message.success("登录成功");
         nav(MANAGE_INDEX_PATHNAME);
       },
+      onError(err) {
+        message.error(err.message);
+      },
     },
   );
 
