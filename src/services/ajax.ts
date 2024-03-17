@@ -1,10 +1,9 @@
 import { message } from "antd";
 import axios from "axios";
 import { getToken } from "../utils/user-token";
+import { AXIOS_INSTANCE_CONFIG } from "../config";
 
-const instance = axios.create({
-  timeout: 10 * 1000,
-});
+const instance = axios.create(AXIOS_INSTANCE_CONFIG);
 
 // request 拦截：每次请求都带上 token
 instance.interceptors.request.use(

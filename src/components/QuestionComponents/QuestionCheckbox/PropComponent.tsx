@@ -69,7 +69,8 @@ const PropComponent: FC<QuestionCheckboxPropsType> = (
                         { required: true, message: "请输入选项文字" },
                         {
                           validator: (_, text) => {
-                            const { options = [] } = form.getFieldsValue();
+                            const { list: options = [] } =
+                              form.getFieldsValue();
 
                             let num = 0;
                             options.forEach((opt: OptionType) => {

@@ -27,6 +27,12 @@ module.exports = {
             },
           },
         };
+
+        // 设置打包后文件的引用路径
+        webpackConfig.output = {
+          ...webpackConfig.output,
+          publicPath: "/",
+        };
       }
       return webpackConfig;
     },

@@ -1,6 +1,6 @@
 import React, { FC, useMemo, useRef } from "react";
 import styles from "./StatHeader.module.scss";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   Button,
   Input,
@@ -36,8 +36,9 @@ const StatHeader: FC = () => {
   // 使用 useMemo
   const LinkAndQRCodeElem = useMemo(() => {
     if (!isPublished) return null;
-
-    const url = `http://localhost:3000/question/${id}`; // 拼接 url，需要符合 C端 的规则
+    const origin = window.location.origin;
+    const pathname = window.location.pathname;
+    const url = `${origin}${pathname}`; // 拼接 url，需要符合 C端 的规则
 
     // 二维码组件
     const QRCodeElem = (
